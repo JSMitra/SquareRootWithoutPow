@@ -48,7 +48,7 @@ public class PrimeNumberHelper {
 
 	/**
 	 * checks from the recorded list of primes if n is present else computes prime
-	 * is brute force way. If n is discovered to be a prime, n would be added to the
+	 * in a brute force way. If n is discovered to be a prime, n would be added to the
 	 * list of primes
 	 * 
 	 * @param n
@@ -87,10 +87,10 @@ public class PrimeNumberHelper {
 	}
 
 	/**
-	 * gets a list of prime factors of n upto square root of N
+	 * gets a list of prime factors of n upto square root of n
 	 * 
 	 * @param n
-	 * @return list of prime factors of n upto square root of N
+	 * @return list of prime factors of n upto square root of n
 	 */
 	public static List<Long> getPrimeFactorsUptoSquareRoot(long n) {
 
@@ -129,7 +129,7 @@ public class PrimeNumberHelper {
 	}
 
 	/**
-	 * get prime factors of a n along with their powers for example if n = 59290L,
+	 * get prime factors of n along with their powers for example if n = 59290L,
 	 * the list will be depicted in the debugger as [{2=1}, {5=1}, {7=2}, {11=2}]
 	 * which means 2^1 x 5^1 x 7^2 x 11^2
 	 * 
