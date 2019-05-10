@@ -12,7 +12,8 @@ public class SquareRootWithoutPow {
 		long start = 1;
 		long end = n;
 		long select = (start + end) / 2;
-		long iterations = 0;
+		// uncomment it if you want to print the number of iterations
+		//long iterations = 0;
 		BigInteger bigIntN = new BigInteger("" + n);
 		BigInteger big2 = new BigInteger("2");
 		BigInteger big1 = new BigInteger("1");
@@ -46,15 +47,17 @@ public class SquareRootWithoutPow {
 					start = select;
 					select = (start + end) / 2;
 				} else {
+					select = select + 1;
 					break;
 				}
 			} else {
 				break;
 			}
-			iterations++;
+			// uncomment it if you want to calculate the number of iterations
+			//iterations++;
 		}
-		// comment it if you don't want to print the number of iterations
-		System.out.println(iterations);
+		// uncomment it if you want to print the number of iterations
+		//System.out.println(iterations);
 		return select;
 	}
 
