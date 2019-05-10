@@ -24,6 +24,10 @@ class CharPoint {
 
 }
 
+/**
+* LCS gives the longest common subsequence between two strings.
+* through the public static funtion getLCS
+*/
 public class LCS {
 
 	static int findPosOfFromIndex(int c, int[] s, int fromIndex) {
