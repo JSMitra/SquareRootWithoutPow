@@ -36,7 +36,7 @@ public class SquareRootWithoutPow {
 					select = select - 1;
 					break;
 				}
-			} else if (compareSquareSelectedWithN < n) {
+			} else if (compareSquareSelectedWithN < 0) {
 				BigInteger bigIntSquareSelectedPlus1 = bigIntSquareOfSelected.add(bigIntTwiceSelected).add(big1);
 
 				int compareSquareSelectPlus1WithN = Compare(bigIntSquareSelectedPlus1, bigIntN);
