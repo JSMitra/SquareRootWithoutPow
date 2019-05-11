@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * PrimeNumberHelper is a class that serves the following purposes: 
- * 1)It tells if a given number is prime 
- * 2)It gives a list of prime factors of a given number upto is square root
- * 3)It gives the list of primes along with their powers to form the given number 
- * 4)It keep accumulating prime numbers as it is fed with newer inputs
+ * PrimeNumberHelper is a class that serves the following purposes: 1)It tells
+ * if a given number is prime 2)It gives a list of prime factors of a given
+ * number upto is square root 3)It gives the list of primes along with their
+ * powers to form the given number 4)It keep accumulating prime numbers as it is
+ * fed with newer inputs
  * 
  * Note: It utilizes SquareRootWithoutPow class for optimizing prime number
  * calculation
@@ -48,7 +48,7 @@ public class PrimeNumberHelper {
 
 	/**
 	 * checks from the recorded list of primes if n is present else computes prime
-	 * in a brute force way. If n is discovered to be a prime, n would be added to the
+	 * is brute force way. If n is discovered to be a prime, n would be added to the
 	 * list of primes
 	 * 
 	 * @param n
@@ -87,10 +87,10 @@ public class PrimeNumberHelper {
 	}
 
 	/**
-	 * gets a list of prime factors of n upto square root of n
+	 * gets a list of prime factors of n upto square root of N
 	 * 
 	 * @param n
-	 * @return list of prime factors of n upto square root of n
+	 * @return list of prime factors of n upto square root of N
 	 */
 	public static List<Long> getPrimeFactorsUptoSquareRoot(long n) {
 
@@ -129,16 +129,15 @@ public class PrimeNumberHelper {
 	}
 
 	/**
-	 * get prime factors of n along with their powers for example if n = 59290L,
+	 * get prime factors of a n along with their powers for example if n = 59290L,
 	 * the list will be depicted in the debugger as [{2=1}, {5=1}, {7=2}, {11=2}]
 	 * which means 2^1 x 5^1 x 7^2 x 11^2
 	 * 
 	 * @param n
-	 * @return List of Maps where each Map has a prime factor and its power.
-	 *         Together sum of all the primes with their powers form the number n
+	 * @return Map of prime numbers as keys and the powers as the corresponding values
 	 */
-	private static List<Map<Long, Long>> getPrimeFactorsWithPowers(long n) {
-		List<Map<Long, Long>> primeFactorsWithPowers = new ArrayList<>();
+	private static Map<Long, Long> getPrimeFactorsWithPowers(long n) {
+		Map<Long, Long> powers = new HashMap<>();
 
 		List<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
 		Iterator<Long> primeIter = primeFactors.iterator();
@@ -150,22 +149,19 @@ public class PrimeNumberHelper {
 				power++;
 				n2 = n2 / primeFactor;
 			}
-			Map<Long, Long> powers = new HashMap<>();
 			powers.put(primeFactor, power);
-			primeFactorsWithPowers.add(powers);
 
 		}
 		if (n2 > 0) {
-			Map<Long, Long> powers = new HashMap<>();
+
 			powers.put(n2, 1L);
-			primeFactorsWithPowers.add(powers);
 		}
-		return primeFactorsWithPowers;
+		return powers;
 	}
 
 	public static void main(String[] args) {
 
-		List<Map<Long, Long>> primesWithPowers = getPrimeFactorsWithPowers(837482995L);
+		Map<Long, Long> primesWithPowers = getPrimeFactorsWithPowers(837482995L);
 
 		System.out.println(primesWithPowers);
 
