@@ -136,7 +136,7 @@ public class PrimeNumberHelper {
 	 * @param n
 	 * @return Map of prime numbers as keys and the powers as the corresponding values
 	 */
-	private static Map<Long, Long> getPrimeFactorsWithPowers(long n) {
+	public static Map<Long, Long> getPrimeFactorsWithPowers(long n) {
 		Map<Long, Long> powers = new HashMap<>();
 
 		List<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
@@ -152,11 +152,23 @@ public class PrimeNumberHelper {
 			powers.put(primeFactor, power);
 
 		}
-		if (n2 > 0) {
+		if (n2 > 1) {
 
 			powers.put(n2, 1L);
 		}
 		return powers;
+	}
+	
+	public static long getNumberFromPrimeFactorPowers(Map<Long, Long> primeFactorsWithPowers) {
+		long lcm = 1L;
+		Iterator<Long> n1Iter = primeFactorsWithPowers.keySet().iterator();
+		while(n1Iter.hasNext()) {
+			long primeFactorOfN = n1Iter.next();
+			long powerOfPrimeFactorOfN = primeFactorsWithPowers.get(primeFactorOfN);
+			lcm *= Utility.power(primeFactorOfN, powerOfPrimeFactorOfN);
+		}
+		
+		return lcm;
 	}
 
 	public static void main(String[] args) {
