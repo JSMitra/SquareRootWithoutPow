@@ -23,7 +23,7 @@ public class MergingCommunities {
 		return getGroup(array, array[member]);
 	}
 
-	private static void merge2(List<Integer[]> commands, int N) {
+	private static void merge(List<Integer[]> commands, int N) {
 		int[] array = new int[N + 1];
 		for (int i = 1; i < N + 1; i++) {
 			array[i] = -1;
@@ -36,17 +36,13 @@ public class MergingCommunities {
 				// merge both the groups
 				int g1 = command[0];
 				int g2 = command[1];
-				/*
-				 * if (g1 == 981 || g2 == 981) { System.out.println(309); }
-				 */
+				
 				int newG1 = getGroup(array, g1);
 				int newG2 = getGroup(array, g2);
 
 				if (newG1 == newG2)
 					continue;
 
-				// int modG1 = modulus(array[newG1]);
-				// int modG2 = modulus(array[newG2]);
 				if (newG1 < newG2) {
 
 					array[newG1] += array[newG2];
@@ -57,9 +53,7 @@ public class MergingCommunities {
 					array[newG1] = newG2;
 				}
 			} else if (command.length == 1) {
-				/*
-				 * if (query >= 528) { System.out.println(query); }
-				 */
+				
 				int member = command[0];
 				System.out.println(modulus(array[getGroup(array, member)]));
 			}
@@ -90,8 +84,7 @@ public class MergingCommunities {
 				break;
 			}
 		}
-		// merge(commands, N);
-		merge2(commands, N);
+		merge(commands, N);
 		in.close();
 	}
 
