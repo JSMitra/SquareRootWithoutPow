@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * PrimeNumberHelper is a class that serves the following purposes: 1)It tells
- * if a given number is prime 2)It gives a list of prime factors of a given
- * number upto is square root 3)It gives the list of primes along with their
- * powers to form the given number 4)It keep accumulating prime numbers as it is
- * fed with newer inputs
+ * PrimeNumberHelper is a class that serves the following purposes: 
+ * 1)It tells if a given number is prime 
+ * 2)It gives a list of prime factors of a given number upto is square root 
+ * 3)It gives the list of primes along with their powers to form the given number 
+ * 4)It keep accumulating prime numbers as it is fed with newer inputs
+ * 5)It can regenerate a number from its prime factors and their powers
  * 
  * Note: It utilizes SquareRootWithoutPow class for optimizing prime number
  * calculation
@@ -134,7 +135,8 @@ public class PrimeNumberHelper {
 	 * which means 2^1 x 5^1 x 7^2 x 11^2
 	 * 
 	 * @param n
-	 * @return Map of prime numbers as keys and the powers as the corresponding values
+	 * @return Map of prime numbers as keys and the powers as the corresponding
+	 *         values
 	 */
 	public static Map<Long, Long> getPrimeFactorsWithPowers(long n) {
 		Map<Long, Long> powers = new HashMap<>();
@@ -158,16 +160,22 @@ public class PrimeNumberHelper {
 		}
 		return powers;
 	}
-	
+
+	/**
+	 * Generates a number from its prime factors and their powers
+	 * 
+	 * @param primeFactorsWithPowers
+	 * @return number from its prime factors and their powers
+	 */
 	public static long getNumberFromPrimeFactorPowers(Map<Long, Long> primeFactorsWithPowers) {
 		long lcm = 1L;
 		Iterator<Long> n1Iter = primeFactorsWithPowers.keySet().iterator();
-		while(n1Iter.hasNext()) {
+		while (n1Iter.hasNext()) {
 			long primeFactorOfN = n1Iter.next();
 			long powerOfPrimeFactorOfN = primeFactorsWithPowers.get(primeFactorOfN);
 			lcm *= Utility.power(primeFactorOfN, powerOfPrimeFactorOfN);
 		}
-		
+
 		return lcm;
 	}
 
