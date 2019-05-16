@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * PrimeNumberHelper is a class that serves the following purposes: 
  * 1)It tells if a given number is prime 
- * 2)It gives a list of prime factors of a given number upto is square root 
+ * 2)It gives a list of prime factors of a given number
  * 3)It gives the list of primes along with their powers to form the given number 
  * 4)It keep accumulating prime numbers as it is fed with newer inputs
  * 5)It can regenerate a number from its prime factors and their powers
@@ -96,7 +96,7 @@ public class PrimeNumberHelper {
 		addPrimeNumber(n);
 		return true;
 	}
-
+	
 	/**
 	 * gets a list of prime factors of n upto square root of N
 	 * 
@@ -137,6 +137,29 @@ public class PrimeNumberHelper {
 		}
 		return primeFactors;
 
+	}
+	
+	/**
+	 * Gets the prime factors of n
+	 * @param n
+	 * @return
+	 */
+	public static List<Long> getPrimeFactors(long n) {
+		List<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
+		Iterator<Long> primeIter = primeFactors.iterator();
+		long n2 = n;
+		while (primeIter.hasNext()) {
+			long primeFactor = primeIter.next();
+			while (n2 % primeFactor == 0) {
+				n2 = n2 / primeFactor;
+			}
+
+		}
+		if (n2 > 1) {
+
+			primeFactors.add(n2);
+		}
+		return primeFactors;
 	}
 
 	/**
@@ -276,6 +299,8 @@ public class PrimeNumberHelper {
 		Map<Long, Long> primesWithPowers = getPrimeFactorsWithPowers(837482995L);
 
 		System.out.println(primesWithPowers);
+		
+		System.out.println("List Of Prime Factos="+getPrimeFactors(837482995L));
 		
 		System.out.println(getListOfPrimes(100L));
 		
