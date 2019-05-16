@@ -13,6 +13,7 @@ import java.util.Map;
  * 3)It gives the list of primes along with their powers to form the given number 
  * 4)It keep accumulating prime numbers as it is fed with newer inputs
  * 5)It can regenerate a number from its prime factors and their powers
+ * 6)Can get a list of prime number <= n 
  * 
  * Note: It utilizes SquareRootWithoutPow class for optimizing prime number
  * calculation
@@ -38,6 +39,14 @@ public class PrimeNumberHelper {
 	 */
 	public static List<Long> getRecordedPrimesList() {
 		return new ArrayList<Long>(listOfPrimes);
+	}
+	
+	/**
+	 * Returns last recorded prime
+	 * @return
+	 */
+	public static long getLastRecordedPrime() {
+	  return listOfPrimes.get(listOfPrimes.size()-1);
 	}
 
 	private static void addPrimeNumber(long p) {
@@ -97,7 +106,7 @@ public class PrimeNumberHelper {
 
 		List<Long> primeFactors = new ArrayList<>();
 		long limit = SquareRootWithoutPow.getSquareRoot(n);
-		long lastCheckedPrimeFactor = 0;
+		long lastCheckedPrimeFactor = 1;
 		Iterator<Long> primeIter = listOfPrimes.iterator();
 		while (primeIter.hasNext()) {
 			lastCheckedPrimeFactor = primeIter.next();
@@ -178,12 +187,45 @@ public class PrimeNumberHelper {
 
 		return lcm;
 	}
+	
+	/**
+	 * Get list of prime numbers <= n
+	 * @param n
+	 * @return
+	 */
+	public static List<Long> getListOfPrimes(long n){
+		List<Long> primes = new ArrayList<>();
+		long lastCheckedPrime = 1;
+		Iterator<Long> primeIter = listOfPrimes.iterator();
+		while(primeIter.hasNext()) {
+			lastCheckedPrime = primeIter.next();
+			if(lastCheckedPrime > n) {
+				break;
+			}
+			primes.add(lastCheckedPrime);
+		}
+		
+		for (long i = lastCheckedPrime + 2; i <= n; i += 2) {
+			// skip multiples of 5
+			if (i % 10 == 5) {
+				continue;
+			}
+			if (isPrime(i)) {
+				primes.add(i);
+			}
+
+		}
+		
+		return primes;
+	}
 
 	public static void main(String[] args) {
 
 		Map<Long, Long> primesWithPowers = getPrimeFactorsWithPowers(837482995L);
 
 		System.out.println(primesWithPowers);
+		
+		System.out.println(getListOfPrimes(4L));
 
 	}
 }
