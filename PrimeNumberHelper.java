@@ -13,7 +13,8 @@ import java.util.Map;
  * 3)It gives the list of primes along with their powers to form the given number 
  * 4)It keep accumulating prime numbers as it is fed with newer inputs
  * 5)It can regenerate a number from its prime factors and their powers
- * 6)Can get a list of prime number <= n 
+ * 6)Can get a list of prime numbers in the range [2,n] 
+ * 7)Can get a list of prime numbers in the range [n1, n2]
  * 
  * Note: It utilizes SquareRootWithoutPow class for optimizing prime number
  * calculation
@@ -218,14 +219,67 @@ public class PrimeNumberHelper {
 		
 		return primes;
 	}
+	
+	/**
+	 * Get list of prime numbers between n1, n2 (n1 & n2 included)
+	 * @param n
+	 * @return
+	 */
+	public static List<Long> getListOfPrimesBetween(long n1, long n2){
+		List<Long> primes = new ArrayList<>();
+		long lastCheckedPrime = 1;
+		int indexOfLastCheckedPrime = 0;
+		int size = listOfPrimes.size();
+		if(listOfPrimes.contains(n1)) {
+			primes.add(n1);
+			lastCheckedPrime = n1;
+			if(n1 > 2) {
+				indexOfLastCheckedPrime = listOfPrimes.indexOf(n1);
+			}
+		}else {
+			while(indexOfLastCheckedPrime < size) {
+				lastCheckedPrime = listOfPrimes.get(indexOfLastCheckedPrime);
+				if(lastCheckedPrime > n1) {
+					break;
+				}
+				indexOfLastCheckedPrime++;
+			}
+		}
+		indexOfLastCheckedPrime++;
+		while(indexOfLastCheckedPrime < size) {
+			lastCheckedPrime = listOfPrimes.get(indexOfLastCheckedPrime);
+			if(lastCheckedPrime > n2) {
+				break;
+			}
+			primes.add(lastCheckedPrime);
+			indexOfLastCheckedPrime++;
+		}
+		
+		for (long i = lastCheckedPrime + 2; i <= n2; i += 2) {
+			// skip multiples of 5
+			if (i % 10 == 5) {
+				continue;
+			}
+			if (isPrime(i)) {
+				primes.add(i);
+			}
+
+		}
+		
+		return primes;
+	}
 
 	public static void main(String[] args) {
 
+		System.out.println(getListOfPrimesBetween(3L,90L));
+		
 		Map<Long, Long> primesWithPowers = getPrimeFactorsWithPowers(837482995L);
 
 		System.out.println(primesWithPowers);
 		
 		System.out.println(getListOfPrimes(100L));
+		
+		System.out.println(getListOfPrimesBetween(3L,90L));
 
 	}
 }
