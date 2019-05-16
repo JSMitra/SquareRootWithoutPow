@@ -11,7 +11,7 @@ public class CommonElements {
 		Iterator<Long> a1Iter = a1.iterator();
 		while(a1Iter.hasNext()) {
 			long elem = a1Iter.next();
-			if(a2.remove(elem)) {
+			if(a2.contains(elem)) {
 				commonElementSet.add(elem);
 			}
 		}
