@@ -2,9 +2,11 @@ package com.practice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * PrimeNumberHelper is a class that serves the following purposes: 
@@ -103,9 +105,9 @@ public class PrimeNumberHelper {
 	 * @param n
 	 * @return list of prime factors of n upto square root of N
 	 */
-	public static List<Long> getPrimeFactorsUptoSquareRoot(long n) {
+	public static Set<Long> getPrimeFactorsUptoSquareRoot(long n) {
 
-		List<Long> primeFactors = new ArrayList<>();
+		Set<Long> primeFactors = new HashSet<>();
 		long limit = SquareRootWithoutPow.getSquareRoot(n);
 		long lastCheckedPrimeFactor = 1;
 		Iterator<Long> primeIter = listOfPrimes.iterator();
@@ -144,8 +146,8 @@ public class PrimeNumberHelper {
 	 * @param n
 	 * @return
 	 */
-	public static List<Long> getPrimeFactors(long n) {
-		List<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
+	public static Set<Long> getPrimeFactors(long n) {
+		Set<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
 		Iterator<Long> primeIter = primeFactors.iterator();
 		long n2 = n;
 		while (primeIter.hasNext()) {
@@ -174,7 +176,7 @@ public class PrimeNumberHelper {
 	public static Map<Long, Long> getPrimeFactorsWithPowers(long n) {
 		Map<Long, Long> powers = new HashMap<>();
 
-		List<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
+		Set<Long> primeFactors = getPrimeFactorsUptoSquareRoot(n);
 		Iterator<Long> primeIter = primeFactors.iterator();
 		long n2 = n;
 		while (primeIter.hasNext()) {
