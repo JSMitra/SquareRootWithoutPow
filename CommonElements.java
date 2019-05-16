@@ -18,6 +18,24 @@ public class CommonElements {
 		return commonElementSet;
 	}
 	
+	/**
+	 * Returns the elements present only in set a1
+	 * @param a1
+	 * @param a2
+	 * @return
+	 */
+	public static Set<Long> getElementsUniqueToFirstSet(Set<Long> a1, Set<Long> a2){
+		Set<Long> uniqueElementsOfA1 = new HashSet<>();
+		Iterator<Long> a1Iter = a1.iterator();
+		while(a1Iter.hasNext()) {
+			long elem = a1Iter.next();
+			if(!a2.contains(elem)) {
+				uniqueElementsOfA1.add(elem);
+			}
+		}
+		return uniqueElementsOfA1;
+	}
+	
 	public static void main(String[] args) {
 		Set<Long> a1 = new HashSet<>();
 		Set<Long> a2 = new HashSet<>();
