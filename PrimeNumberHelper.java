@@ -225,7 +225,7 @@ public class PrimeNumberHelper {
 
 		System.out.println(primesWithPowers);
 		
-		System.out.println(getListOfPrimes(4L));
+		System.out.println(getListOfPrimes(100L));
 
 	}
 }
