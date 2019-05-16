@@ -219,8 +219,8 @@ public class PrimeNumberHelper {
 	 * @param n
 	 * @return
 	 */
-	public static List<Long> getListOfPrimes(long n){
-		List<Long> primes = new ArrayList<>();
+	public static Set<Long> getListOfPrimes(long n){
+		Set<Long> primes = new HashSet<>();
 		long lastCheckedPrime = 1;
 		Iterator<Long> primeIter = listOfPrimes.iterator();
 		while(primeIter.hasNext()) {
@@ -250,8 +250,8 @@ public class PrimeNumberHelper {
 	 * @param n
 	 * @return
 	 */
-	public static List<Long> getListOfPrimesBetween(long n1, long n2){
-		List<Long> primes = new ArrayList<>();
+	public static Set<Long> getListOfPrimesBetween(long n1, long n2){
+		Set<Long> primes = new HashSet<>();
 		long lastCheckedPrime = 1;
 		int indexOfLastCheckedPrime = 0;
 		int size = listOfPrimes.size();
